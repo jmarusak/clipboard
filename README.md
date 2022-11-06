@@ -1,1 +1,1 @@
-# clipboard
+# Global Clipboard
