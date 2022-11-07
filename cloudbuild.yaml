@@ -1,0 +1,28 @@
+steps:
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'us-central1-docker.pkg.dev/$_PROJECT_ID/docker-repo/$_SERVICE_NAME', '.']
+
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'us-central1-docker.pkg.dev/$_PROJECT_ID/docker-repo/$_SERVICE_NAME']
+ 
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - '$_SERVICE_NAME'
+   - '--image'
+   - 'us-central1-docker.pkg.dev/$_PROJECT_ID/docker-repo/$_SERVICE_NAME'
+   - '--region'
+   - '$_REGION'
+   - '--platform'
+   - 'managed'
+   - '--max-instances'
+   - '1'
+   - '--allow-unauthenticated'
+images:
+ - 'us-central1-docker.pkg.dev/$_PROJECT_ID/docker-repo/$_SERVICE_NAME'
+substitutions:
+   _PROJECT_ID: martinview4
+   _SERVICE_NAME: clipboard
+   _REGION: us-central1

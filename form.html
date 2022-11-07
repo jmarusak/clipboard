@@ -2,11 +2,23 @@
   <head>
     <title>Clipboard</title>
     <h1>Global Clipboard</h1>
+    <style>
+      table, th, td {
+        border: 1px solid black
+      }
+    </style>
   </head>
   <body>
     <form action="/" method="post">
-      <input type="text" name="clipboard">
-      <input type="submit" value="Paste">
+      <input type="text" name="entry">
+      <input type="submit" value="Copy">
     </form>
+    <table>
+      {{range .Entries}}
+        <tr>
+          <td>{{.Content}}</td>
+        </tr>
+      {{end}}
+    </table>
   </body>
 </html>
