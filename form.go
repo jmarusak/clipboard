@@ -10,6 +10,7 @@ type Entry struct {
 }
 
 type Data struct {
+	LastEntry string
 	Entries []Entry
 }	
 
@@ -24,6 +25,7 @@ func main() {
 			r.ParseForm()
 			entry.Content = r.FormValue("entry")
 			data.Entries = append(data.Entries, entry)
+			data.LastEntry = data.Entries[len(data.Entries)-1].Content
 		}
 
 		tmpl.Execute(w, data)
