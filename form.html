@@ -10,7 +10,7 @@
   </head>
   <body>
     <form action="/" method="post">
-      <input type="text" name="entry" size="100" value={{.LastEntry}}>
+      <textarea id="input" name="entry" rows="20" cols="100" >{{.LastEntry}}</textarea><br><br>
       <input type="submit" value="Copy">
     </form>
     <table>
