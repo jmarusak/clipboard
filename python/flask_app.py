@@ -19,5 +19,3 @@ def clipboard():
         form_data = request.form
         cache.set('form_data', form_data)
         return render_template('form.html', form_data=form_data)
-
-app.run(host='localhost', port=5000)
